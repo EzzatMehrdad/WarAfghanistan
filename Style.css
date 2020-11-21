@@ -1,0 +1,120 @@
+#h3{text-align: center; font-family: cursive; font-weight: 200px; text-transform: uppercase;}
+
+body {background-color:whitesmoke; font-family: "Courier New", monospace
+     }
+#1{font-size: 2px
+    
+} 
+#logo { width: 200px; height:150px; margin-top: 20px;}
+
+.b1 { margin-left: auto; margin-right: auto; margin-bottom: 20px; margin-top: auto; background-color: white; max-width:800px;  min-width: 1200 px; height: auto; text-align: center; padding-top: 4px;
+}
+
+ul { width: 580px; padding: 10px; margin: 0px auto 0px auto; border-top: 2px solid ; border-bottom: 1px solid #000; text-align: center; text-transform: uppercase; font-size:20px;   
+     
+}  
+li {display: inline;
+}
+
+p {text-align: center}
+    
+
+a {color: black; text-decoration-line: none; text-decoration-color: black; text-decoration: none; letter-spacing: 1px; font-weight: bold
+    
+}
+a:active, a.on {color:#cc3333; background-color: white
+}
+
+table { 
+            margin: 0 auto; 
+            font-size: large; 
+            border: 1px solid black; 
+        } 
+  
+h2 { 
+            text-align: center; 
+            color: #006600; 
+            font-size: x-large; 
+            font-family: 'Gill Sans',  
+                'Gill Sans MT', ' Calibri',  
+                'Trebuchet MS', 'sans-serif'; 
+        } 
+  
+        td { 
+            background-color: #E4F5D4; 
+            border: 1px solid black; 
+        } 
+  
+        th, 
+        td { 
+            font-weight: bold; 
+            border: 1px solid black; 
+            padding: 10px; 
+            text-align: center; height: 20px;  
+        } 
+        td { 
+            font-weight: lighter; height: 10px; width: 20px; 
+        }
+h3 {
+            color:firebrick; 
+            font-size:large; 
+            font-family: sans-serif; 
+        } 
+#graph{ text-align: center;
+
+
+}
+
+#tooltip.hidden
+{
+    display:none;
+}
+
+#tooltip
+{
+    position:absolute;
+    width:300px;
+    height:auto;
+    padding:10px;
+    background-color:white;
+    border-radius:10px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    pointer-events:none;
+}
+
+
+#year
+{
+  font-size:30px;  
+}
+
+#D
+{
+  font-size:60px;  
+}
+
+#I
+{
+    font-size:30px;
+}
+
+circle
+{
+    fill:black;
+}
+
+
+.label
+{
+    font-size:20px;
+}
+
+.off
+{
+  opacity:.1;  
+}
+#last{ text-align: left;
+    
+    
+}
+#ref{text-align: left;}
