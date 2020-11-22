@@ -10,7 +10,7 @@ body {background-color:whitesmoke; font-family: "Courier New", monospace
 .b1 { margin-left: auto; margin-right: auto; margin-bottom: 20px; margin-top: auto; background-color: white; max-width:800px;  min-width: 1200 px; height: auto; text-align: center; padding-top: 4px;
 }
 
-ul { width: 580px; padding: 10px; margin: 0px auto 0px auto; border-top: 2px solid ; border-bottom: 1px solid #000; text-align: center; text-transform: uppercase; font-size:20px;   
+ul { width: 590px; padding: 5px;; margin: 0px auto 0px auto; border-top: 2px solid ; border-bottom: 1px solid #000; text-align: center; text-transform: uppercase; font-size:20px;word-spacing:normal;  
      
 }  
 li {display: inline;
@@ -55,10 +55,9 @@ h2 {
         td { 
             font-weight: lighter; height: 10px; width: 20px; 
         }
-h3 {
-            color:firebrick; 
-            font-size:large; 
-            font-family: sans-serif; 
+h3 {color:firebrick; 
+    font-size:large; 
+font-family:sans-serif; 
         } 
 #graph{ text-align: center;
 
@@ -73,7 +72,7 @@ h3 {
 #tooltip
 {
     position:absolute;
-    width:300px;
+    width:200px;
     height:auto;
     padding:10px;
     background-color:white;
@@ -90,7 +89,7 @@ h3 {
 
 #D
 {
-  font-size:60px;  
+  font-size:60px; color: red;
 }
 
 #I
@@ -109,12 +108,9 @@ circle
     font-size:20px;
 }
 
-.off
-{
-  opacity:.1;  
-}
-#last{ text-align: left;
+ 
+#last{ text-align: left; text-transform: none; font-weight: bold;
     
     
 }
-#ref{text-align: left;}
+#ref{width: 600px; margin: 0px auto 0px auto; border-bottom: 1px solid #000; text-align: left;font-size:15px; font-family: cursive;}

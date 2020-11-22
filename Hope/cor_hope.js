@@ -1,12 +1,13 @@
-var drawLines = function(HumanCost,line, target,
-              xScale, yScale)
+var drawLines = function(HumanCost, graph, target, xScale,yScale)
 {
     
     var lineHope = d3.line()
         .x(function(year) { return xScale(year.Year)})
         .y(function(year) { return yScale(year.Hope)})
+        .curve(d3.curveCardinal)
     
-        target
+    
+        target   
         .append("path")
         .datum(HumanCost)
         .attr("fill","none")
@@ -16,8 +17,9 @@ var drawLines = function(HumanCost,line, target,
      var lineTroop = d3.line()
         .x(function(year) { return xScale(year.Year)})
         .y(function(year) { return yScale(year.US_Troop_Level)})
+        .curve(d3.curveCardinal)
     
-        target
+         target
         .append("path")
         .datum(HumanCost)
         .attr("fill","none")
@@ -28,15 +30,14 @@ var drawLines = function(HumanCost,line, target,
     var lineFear = d3.line()
         .x(function(year) { return xScale(year.Year)})
         .y(function(year) { return yScale(year.Fear)})
+        .curve(d3.curveCardinal)
     
-        target
+       target
         .append("path")
         .datum(HumanCost)
         .attr("fill","none")
         .attr("d",lineFear)
         .attr("stroke", "red")
-    
-
     
      .on("mouseover",function(HumanCost)
         {   
@@ -47,7 +48,7 @@ var drawLines = function(HumanCost,line, target,
             
             d3.select(this)
                 .classed("fade",false)
-                .raise(); //move to top
+                .raise();
             }
         })
         .on("mouseout",function(HumanCost)
@@ -68,7 +69,6 @@ var drawLabels=function(graph,target, margins)
 {
     var labels = d3.select("#graph")
         .append("g")
-        .classed("labels",true)
     
         labels.append("text")
         .text("Afghanistan over 10 Years")
@@ -79,20 +79,19 @@ var drawLabels=function(graph,target, margins)
     labels.append("text")
         .text("Year")
         .attr("text-anchor","middle")
+        .attr("text-size","bold")
         .attr("x",margins.left+(graph.width/2))
-        .attr("y",graph.height)
+        .attr("y",graph.height+margins.bottom+10)
     
     labels.append("g")
-        .attr("transform","translate(20,"+ 
+        .attr("transform","translate(0,"+ 
              (margins.top+(graph.height/2))+")")
         .append("text")
         .text("Percentage")
         .attr("text-anchor","middle")
         .attr("transform","rotate(90)")
-    
 }
-
-var  drawLegend=function(HumanCost,margins, graph, target, xScale, yScale)
+var  drawLegend=function(HumanCost, graph, target, margins, xScale, yScale)
   {
     
     var names = [
@@ -100,7 +99,6 @@ var  drawLegend=function(HumanCost,margins, graph, target, xScale, yScale)
            class:"hope",
            name:"Hope"
        },
-      
         {
         class:"fear",
         name:"Fear"
@@ -114,13 +112,14 @@ var  drawLegend=function(HumanCost,margins, graph, target, xScale, yScale)
         
     ]
     
-    var legend = d3.select("#graph")
+    var legend = d3.select("svg")
+        .select("#graph")
         .append("g")
         .attr("id", "legends")
 
         .attr("transform","translate("+
-              (margins.left+ 10) +","+
-             (margins.top+10)+")");
+              (graph.left+ 10) +","+
+             (graph.top+10)+")");
         
     var entries =legend.selectAll("g")
         .data(names)
@@ -139,8 +138,8 @@ var  drawLegend=function(HumanCost,margins, graph, target, xScale, yScale)
     entries.append("text")
     
     .text(function(catagory){return catagory.name;})
-    .attr("x",15)
-    .attr("y",10)
+    .attr("x", 15)
+    .attr("y",5)
       
     .on("click",function(HumanCost)
     {
@@ -161,35 +160,32 @@ var  drawLegend=function(HumanCost,margins, graph, target, xScale, yScale)
                 .classed("off",false);
         }
     })  
-      
-      
 }   
-var  drawAxes=function(HumanCost, target,  margins, xScale, yScale)
+var  drawAxes=function(HumanCost, graph, target, margins, xScale, yScale)
 {
     
     var xAxis = d3.axisBottom(xScale);
     var yAxis=d3.axisLeft(yScale);
     
      var xAxis = d3.axisBottom(xScale);
-    var xAxis = d3.select("svg")
-        .select("#graph")
+    var xAxis = d3.select("#graph")
         .append("g")
-        .attr("transform", "translate("+(target.left)+"," +(target.top+graph.height)+")")
+        .attr("transform", "translate("+0+"," +(margins.top+graph.height)+")")
     
         .call(xAxis)    
-    console.log(xAxis);
-    
+
     var yAxis = d3.select("svg")
         .select("#graph")
+        .append("g")
         .attr("transform","translate("+0+","
-             +(0)+")")
+             +0+")")
         .call(yAxis)
     }
 
 var initGraph = function(HumanCost)
 {
-    var screen = {width:700,height:300}
-    var margins = {left:20,right:30,top:20,bottom:30}
+    var screen = {width:600,height:350}
+    var margins = {left:30,right:0,top:20,bottom:50}
     
     var graph = 
         {
@@ -202,7 +198,7 @@ var initGraph = function(HumanCost)
     .attr("width",screen.width)
     .attr("height",screen.height)
     
-    var target = d3.select("svg")
+    var target = d3.select("#graph")
     .append("g")
     .attr("id","graph")
     .attr("transform",
@@ -219,7 +215,7 @@ var initGraph = function(HumanCost)
 
     drawLines(HumanCost, graph, target,xScale,yScale);
     drawLabels(graph,target, margins);
-    drawAxes(HumanCost, target, margins, xScale, yScale);
+    drawAxes(HumanCost, graph, target, margins, xScale, yScale);
     drawLegend(HumanCost, margins, graph, target, xScale, yScale);
 }
 

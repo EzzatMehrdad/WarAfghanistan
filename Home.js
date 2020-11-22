@@ -9,13 +9,13 @@ var drawPlot = function(HumanCost,target,graph,yScale)
     .enter()
     .append("rect")
     .attr("x", function(d, i)
-         { console.log(graph.width)
+         { 
         
         return i*(graph.width/HumanCost.length)+5;
     }
          )
     .attr("y", function(d)
-         {  console.log(graph.height)
+         { 
           
         return yScale(parseInt(d.Civilian_Casualty))
          })
@@ -54,10 +54,10 @@ var drawPlot = function(HumanCost,target,graph,yScale)
     })
 }
 
-var drawLabels=function(graph,target, HumanCost,yScale)
+var drawLabels=function(graph,HumanCost,yScale)
 
 {    
-    var labels=d3.select("svg")
+    var labels=d3.select("#graph")
     .append("g")
     .attr("id", "labels")
     .selectAll("text")
@@ -71,25 +71,24 @@ var drawLabels=function(graph,target, HumanCost,yScale)
 
     .attr("x", function(d, i)
          { 
-        return i*(graph.width/HumanCost.length)+5;
+        return i*(graph.width/HumanCost.length)+40;
     }) 
           
     .attr("y",  function(d)
          {  
-        return yScale(parseInt(d.Civilian_Casualty))
+        return 10+yScale(parseInt(d.Civilian_Casualty))
          })
     .attr("text-anchor", "Middle")    
     .attr("font-family", "sans-serif")
-    .attr("font-size", "11px")
+    .attr("font-size", "12px")
 }
     
-var  drawAxes=function(HumanCost, target, xScale)
+var  drawAxes=function(graph,margines, xScale)
 {
-    
     var xAxis = d3.axisBottom(xScale);
-    var xAxis = d3.select("svg")
-        .select("#graph")
-        .attr("transform", "translate("+(target.left)+"," +(target.top+graph.height)+")")
+    var xAxis = d3.select("#graph")
+        .append("g")      
+        .attr("transform", "translate("+(margines.left)+"," +(margines.top+graph.height)+")")
         .call(xAxis)
 }   
 
@@ -127,8 +126,8 @@ var initGraph = function(HumanCost)
         .range([100,0])
 
     drawPlot(HumanCost,target,graph, yScale);
-    drawLabels(graph,target, HumanCost, yScale);
-    drawAxes(HumanCost, target, xScale, yScale);
+    drawLabels(graph,HumanCost, yScale);
+    drawAxes(graph, margins, xScale, yScale);
 
 }
 var successFCN = function(HumanCost)
