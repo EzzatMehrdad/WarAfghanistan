@@ -1,6 +1,7 @@
 var drawLines = function(HumanCost, graph, target, xScale,yScale)
 {
     
+    
     var lineHope = d3.line()
         .x(function(year) { return xScale(year.Year)})
         .y(function(year) { return yScale(year.Hope)})
@@ -13,11 +14,13 @@ var drawLines = function(HumanCost, graph, target, xScale,yScale)
         .attr("fill","none")
         .attr("d",lineHope)
         .attr("stroke", "#7D3C98")
+        .classed("hope", true)
     
      var lineTroop = d3.line()
         .x(function(year) { return xScale(year.Year)})
         .y(function(year) { return yScale(year.US_Troop_Level)})
         .curve(d3.curveCardinal)
+
     
          target
         .append("path")
@@ -25,12 +28,13 @@ var drawLines = function(HumanCost, graph, target, xScale,yScale)
         .attr("fill","none")
         .attr("d",lineTroop)
         .attr("stroke", "black")
-        
+        .classed("us_troop_level", true)
     
     var lineFear = d3.line()
         .x(function(year) { return xScale(year.Year)})
         .y(function(year) { return yScale(year.Fear)})
         .curve(d3.curveCardinal)
+       
     
        target
         .append("path")
@@ -38,29 +42,8 @@ var drawLines = function(HumanCost, graph, target, xScale,yScale)
         .attr("fill","none")
         .attr("d",lineFear)
         .attr("stroke", "red")
-    
-     .on("mouseover",function(HumanCost)
-        {   
-            if(! d3.select(this).classed("off"))
-            {
-            d3.selectAll(".line")
-            .classed("fade",true);
-            
-            d3.select(this)
-                .classed("fade",false)
-                .raise();
-            }
-        })
-        .on("mouseout",function(HumanCost)
-           {
-            if(! d3.select(this).classed("off"))
-            {
-            
-            d3.selectAll(".line")
-                .classed("fade",false);
-            }
-            
-        })
+        .classed("Fear", true)
+
     
     }
 
@@ -131,6 +114,7 @@ var  drawLegend=function(HumanCost, graph, target, margins, xScale, yScale)
               })
     
     entries.append("circle")
+      
     .attr("class", function(catagory)
     {   return  catagory.class})
     .attr("r",7) 
@@ -141,7 +125,7 @@ var  drawLegend=function(HumanCost, graph, target, margins, xScale, yScale)
     .attr("x", 15)
     .attr("y",5)
       
-    .on("click",function(HumanCost)
+    .on("click",function(Afg)
     {
         var on = ! d3.select(this)
                      .classed("off");
@@ -149,14 +133,14 @@ var  drawLegend=function(HumanCost, graph, target, margins, xScale, yScale)
         {
             d3.select(this)
                 .classed("off",true);
-            d3.selectAll("."+HumanCost)
+            d3.selectAll("."+Afg.class)
                 .classed("off",true);
         }
         else
         {
             d3.select(this)
                 .classed("off",false);        
-            d3.selectAll("."+HumanCost)
+            d3.selectAll("."+Afg.class)
                 .classed("off",false);
         }
     })  
@@ -212,6 +196,9 @@ var initGraph = function(HumanCost)
     var yScale=d3.scaleLinear()
         .domain([0, 100])
         .range([graph.height, 0])
+    
+    d3.select(".line")
+        .classed("line",true)
 
     drawLines(HumanCost, graph, target,xScale,yScale);
     drawLabels(graph,target, margins);

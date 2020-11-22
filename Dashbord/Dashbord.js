@@ -12,6 +12,7 @@ var drawLines = function(HumanCost, graph, target, xScale,yScale)
         .attr("fill","none")
         .attr("d",lineHope)
         .attr("stroke", "#7D3C98")
+        .classed("Hope", true)
     
      var lineTroop = d3.line()
         .x(function(year) { return xScale(year.Year)})
@@ -24,6 +25,7 @@ var drawLines = function(HumanCost, graph, target, xScale,yScale)
         .attr("fill","none")
         .attr("d",lineTroop)
         .attr("stroke", "black")
+        .classed("us_troop_level", true)
         
     
     var lineFear = d3.line()
@@ -37,6 +39,7 @@ var drawLines = function(HumanCost, graph, target, xScale,yScale)
         .attr("fill","none")
         .attr("d",lineFear)
         .attr("stroke", "red")
+        .classed("fear", true)
     
     
     var lineCorrupt = d3.line()
@@ -50,6 +53,7 @@ var drawLines = function(HumanCost, graph, target, xScale,yScale)
         .attr("fill","none")
         .attr("d",lineCorrupt)
         .attr("stroke", "#0BFADE")
+        .classed("Corruption", true)
     
     var lineInsec = d3.line()
         .x(function(year) { return xScale(year.Year)})
@@ -62,6 +66,7 @@ var drawLines = function(HumanCost, graph, target, xScale,yScale)
         .attr("fill","none")
         .attr("d",lineInsec)
         .attr("stroke", "orange")
+        .classed("insecurity", true)
     
     var lineAir = d3.line()
         .x(function(year) { return xScale(year.Year)})
@@ -74,6 +79,7 @@ var drawLines = function(HumanCost, graph, target, xScale,yScale)
         .attr("fill","none")
         .attr("d",lineAir)
         .attr("stroke", "#7A1A1A")
+        .classed("air", true)
     
      .on("mouseover",function(HumanCost)
         {   
@@ -197,14 +203,14 @@ var  drawLegend=function(HumanCost, graph, target, margins, xScale, yScale)
         {
             d3.select(this)
                 .classed("off",true);
-            d3.selectAll("."+HumanCost)
+            d3.selectAll("."+HumanCost.class)
                 .classed("off",true);
         }
         else
         {
             d3.select(this)
                 .classed("off",false);        
-            d3.selectAll("."+HumanCost)
+            d3.selectAll("."+HumanCost.class)
                 .classed("off",false);
         }
     })  

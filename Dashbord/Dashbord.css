@@ -123,31 +123,65 @@ circle
 #ref{text-align: left;}
 
 
+path.hope{
+fill: none;    
+}
 .hope
-{
-    fill:#7D3C98;
+
+{ fill:#7D3C98;
+}
+
+path.fear{ fill:none;   
+    
+}
+.line{ 
+    
 }
 
 .fear
 {
     fill:red;
 }
-.insecurity{
-    
-    fill:orange; 
-}
-.air{ fill: #7A1A1A;   
+path.fear{ fill:none;
     
 }
+path.us_troop_level{ fill:none;
 
-.corruption{
-    
-    fill:#0BFADE; 
 }
 .us_troop_level{
     
     fill:black;
 }
+
+path.insecurity{ fill:none;
+    
+    
+}
+.insecurity{
+    
+    fill:orange; 
+}
+
+
+path.air{ fill:none;
+    
+    
+}
+
+.air{ fill: #7A1A1A;   
+    
+}
+
+
+path.corruption{ fill:none;
+    
+    
+}
+.corruption{
+    
+    fill:#0BFADE; 
+}
+
 .off
 {
     opacity:.1;

@@ -83,6 +83,13 @@ h5 {
     pointer-events:none;
 }
 
+#Fear{ font-size: 30px}
+
+#Hope{ font-size: 30px;}
+
+#Troop{ font-size: 30px
+
+}
 
 
 .label
@@ -94,16 +101,30 @@ h5 {
 {
   opacity:.1;  
 }
+
+.off,.fade
+{
+    opacity:.1;
+}
 #last{ text-align: left;
-    
-    
+ 
 }
 #ref{text-align: left;}
 
-
+path.hope{
+fill: none;    
+}
 .hope
-{
-    fill:#7D3C98;
+
+{ fill:#7D3C98;
+}
+
+path.fear{ fill:none; 
+    
+    
+}
+.line{ 
+    
 }
 
 .fear
@@ -111,16 +132,13 @@ h5 {
     fill:red;
 }
 
+path.us_troop_level{ fill:none;
+
+
+}
 .us_troop_level{
     
     fill:black;
 }
-.off
-{
-    opacity:.1;
-}
-.off,.fade
-{
-    opacity:.1;
-}
 hr {height:20px; width: 600px; background-color:	#FFD300}
+
